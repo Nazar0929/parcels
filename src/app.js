@@ -1,33 +1,4 @@
-
-
-// // дефолтний імпорт
-
-// import added from "./addition"
-
-// const result = added(2,9)
-// console.log(result);
-
-
-// іменований імпорт
-
-// import { add, subtraction } from "./addition";
-// const result = add(2,92);
-// console.log(result);
-
-// const results = subtraction(2,92);
-// console.log(results);
-
-
-
-// import calculate from "./addition"
-// console.log(calculate);
-
-// const result3 = calculate.add(11,4);
-// const result4 = calculate.subtraction(11,4);
-// console.log(result3);
-// console.log(result4);
-
-
+// перший приклад
 
 import { nanoid } from "nanoid";
 
@@ -55,3 +26,19 @@ const result3 = calculate.add(11,4);
 const result4 = calculate.subtraction(11,4);
 console.log(result3);
 console.log(result4);
+
+
+// другий приклад
+
+
+
+import { students } from "./students.js";
+import { average, maxScore, minScore } from "./addition.js";
+
+students.forEach(student => {
+  console.log(`Учень: ${student.name}`);
+  console.log(`Середній бал: ${average(student.scores).toFixed(1)}`);
+  console.log(`Максимальний: ${maxScore(student.scores)}`);
+  console.log(`Мінімальний: ${minScore(student.scores)}`);
+  console.log("---------------------------");
+});
