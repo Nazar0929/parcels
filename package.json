@@ -22,9 +22,19 @@
   },
   "homepage": "https://github.com/Nazar0929/parcels#readme",
   "devDependencies": {
-    "parcel": "^2.16.0"
+    "assert": "^2.1.0",
+    "buffer": "^6.0.3",
+    "constants-browserify": "^1.0.0",
+    "events": "^3.3.0",
+    "os-browserify": "^0.3.0",
+    "parcel": "^2.16.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "util": "^0.12.5"
   },
   "dependencies": {
-    "gh-pages": "^6.3.0"
+    "gh-pages": "^6.3.0",
+    "nanoid": "^5.1.6"
   }
 }
