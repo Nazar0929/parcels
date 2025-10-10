@@ -15,6 +15,7 @@ export function subtraction(a,b) {
 
 
 
+
 export function average(scores) {
   return scores.reduce((a, b) => a + b, 0) / scores.length;
 }
