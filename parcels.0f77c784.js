@@ -714,8 +714,212 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"2R06K":[function(require,module,exports,__globalThis) {
-console.log("Hello Leon");
+// перший приклад
+var _nanoid = require("nanoid");
+var _addition = require("./addition");
+// другий приклад
+var _studentsJs = require("./students.js");
+var _additionJs = require("./addition.js");
+const people = [
+    {
+        name: "\u0406\u0441\u0430",
+        lastName: "\u041F\u0435\u0442\u0440\u0435\u043D\u043A\u043E",
+        age: 25
+    },
+    {
+        name: "\u041E\u043B\u0435\u043D\u0430",
+        lastName: "\u041A\u043E\u0432\u0430\u043B\u044C\u0447\u0443\u043A",
+        age: 32
+    },
+    {
+        name: "\u041C\u0430\u043A\u0441\u0438\u043C",
+        lastName: "\u0421\u0438\u0434\u043E\u0440\u0435\u043D\u043A\u043E",
+        age: 28
+    },
+    {
+        name: "\u0410\u043B\u0456\u043D\u0430",
+        lastName: "\u0422\u043A\u0430\u0447\u0435\u043D\u043A\u043E",
+        age: 22
+    },
+    {
+        name: "\u042E\u0440\u0456\u0439",
+        lastName: "\u041C\u0435\u043B\u044C\u043D\u0438\u043A",
+        age: 35
+    },
+    {
+        name: "\u041D\u0430\u0442\u0430\u043B\u044F",
+        lastName: "\u0406\u0432\u0430\u043D\u043E\u0432\u0430",
+        age: 30
+    },
+    {
+        name: "\u0414\u043C\u0438\u0442\u0440\u043E",
+        lastName: "\u0411\u043E\u043D\u0434\u0430\u0440",
+        age: 27
+    },
+    {
+        name: "\u0421\u0432\u0456\u0442\u043B\u0430\u043D\u0430",
+        lastName: "\u041A\u0440\u0430\u0432\u0447\u0435\u043D\u043A\u043E",
+        age: 29
+    },
+    {
+        name: "\u0410\u0440\u0442\u0435\u043C",
+        lastName: "\u0413\u043E\u043D\u0447\u0430\u0440",
+        age: 31
+    },
+    {
+        name: "\u041C\u0430\u0440\u0438\u043D\u0430",
+        lastName: "\u041B\u0438\u0442\u0432\u0438\u043D",
+        age: 26
+    }
+];
+const formatId = people.map((user)=>({
+        ...user,
+        id: (0, _nanoid.nanoid)()
+    }));
+console.log(formatId);
+console.log(_addition);
+const result3 = _addition.add(11, 4);
+const result4 = _addition.subtraction(11, 4);
+console.log(result3);
+console.log(result4);
+(0, _studentsJs.students).forEach((student)=>{
+    console.log(`\u{423}\u{447}\u{435}\u{43D}\u{44C}: ${student.name}`);
+    console.log(`\u{421}\u{435}\u{440}\u{435}\u{434}\u{43D}\u{456}\u{439} \u{431}\u{430}\u{43B}: ${(0, _additionJs.average)(student.scores).toFixed(1)}`);
+    console.log(`\u{41C}\u{430}\u{43A}\u{441}\u{438}\u{43C}\u{430}\u{43B}\u{44C}\u{43D}\u{438}\u{439}: ${(0, _additionJs.maxScore)(student.scores)}`);
+    console.log(`\u{41C}\u{456}\u{43D}\u{456}\u{43C}\u{430}\u{43B}\u{44C}\u{43D}\u{438}\u{439}: ${(0, _additionJs.minScore)(student.scores)}`);
+    console.log("---------------------------");
+});
 
-},{}]},["7wZbQ","2R06K"], "2R06K", "parcelRequiree0d5", {})
+},{"nanoid":"328Fw","./addition":"la4mN","./students.js":"jNo07","./addition.js":"la4mN"}],"328Fw":[function(require,module,exports,__globalThis) {
+/* @ts-self-types="./index.d.ts" */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "urlAlphabet", ()=>(0, _indexJs.urlAlphabet));
+parcelHelpers.export(exports, "random", ()=>random);
+parcelHelpers.export(exports, "customRandom", ()=>customRandom);
+parcelHelpers.export(exports, "customAlphabet", ()=>customAlphabet);
+parcelHelpers.export(exports, "nanoid", ()=>nanoid);
+var _indexJs = require("./url-alphabet/index.js");
+let random = (bytes)=>crypto.getRandomValues(new Uint8Array(bytes));
+let customRandom = (alphabet, defaultSize, getRandom)=>{
+    let mask = (2 << Math.log2(alphabet.length - 1)) - 1;
+    let step = -~(1.6 * mask * defaultSize / alphabet.length);
+    return (size = defaultSize)=>{
+        let id = '';
+        while(true){
+            let bytes = getRandom(step);
+            let j = step | 0;
+            while(j--){
+                id += alphabet[bytes[j] & mask] || '';
+                if (id.length >= size) return id;
+            }
+        }
+    };
+};
+let customAlphabet = (alphabet, size = 21)=>customRandom(alphabet, size | 0, random);
+let nanoid = (size = 21)=>{
+    let id = '';
+    let bytes = crypto.getRandomValues(new Uint8Array(size |= 0));
+    while(size--)id += (0, _indexJs.urlAlphabet)[bytes[size] & 63];
+    return id;
+};
+
+},{"./url-alphabet/index.js":"29KoN","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"29KoN":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "urlAlphabet", ()=>urlAlphabet);
+const urlAlphabet = 'useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict';
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jnFvT":[function(require,module,exports,__globalThis) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"la4mN":[function(require,module,exports,__globalThis) {
+// перший приклад
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "add", ()=>add);
+parcelHelpers.export(exports, "subtraction", ()=>subtraction);
+// другий приклад
+parcelHelpers.export(exports, "average", ()=>average);
+parcelHelpers.export(exports, "maxScore", ()=>maxScore);
+parcelHelpers.export(exports, "minScore", ()=>minScore);
+function add(a, b) {
+    return a + b;
+}
+function subtraction(a, b) {
+    return a - b;
+}
+function average(scores) {
+    return scores.reduce((a, b)=>a + b, 0) / scores.length;
+}
+function maxScore(scores) {
+    return Math.max(...scores);
+}
+function minScore(scores) {
+    return Math.min(...scores);
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jNo07":[function(require,module,exports,__globalThis) {
+// другий приклад
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "students", ()=>students);
+const students = [
+    {
+        name: "\u0406\u0432\u0430\u043D",
+        scores: [
+            10,
+            9,
+            11,
+            12
+        ]
+    },
+    {
+        name: "\u041C\u0430\u0440\u0456\u044F",
+        scores: [
+            8,
+            9,
+            10,
+            7
+        ]
+    },
+    {
+        name: "\u041E\u043B\u0435\u0433",
+        scores: [
+            12,
+            12,
+            11,
+            12
+        ]
+    }
+];
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}]},["7wZbQ","2R06K"], "2R06K", "parcelRequiree0d5", {})
 
 //# sourceMappingURL=parcels.0f77c784.js.map
